@@ -48,7 +48,7 @@ public class Main extends JFrame {
 	 * Never do anything in this method.
 	 */
 	/**
-	 * Launch the apbbplication.
+	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -114,12 +114,19 @@ public class Main extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 
 		GroupLayout gl_streampanel = new GroupLayout(streampanel);
-		gl_streampanel.setHorizontalGroup(gl_streampanel.createParallelGroup(
-				Alignment.LEADING).addComponent(scrollPane, Alignment.TRAILING,
-				GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE));
-		gl_streampanel.setVerticalGroup(gl_streampanel.createParallelGroup(
-				Alignment.LEADING).addComponent(scrollPane, Alignment.TRAILING,
-				GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE));
+		gl_streampanel.setHorizontalGroup(
+			gl_streampanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_streampanel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		gl_streampanel.setVerticalGroup(
+			gl_streampanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_streampanel.createSequentialGroup()
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+					.addGap(22))
+		);
 
 		textArea = new JTextArea();
 		scrollPane.setViewportView(textArea);
