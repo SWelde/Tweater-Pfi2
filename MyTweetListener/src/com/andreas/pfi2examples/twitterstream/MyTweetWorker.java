@@ -41,8 +41,8 @@ public class MyTweetWorker extends SwingWorker<String, String> implements
 	/* SwingWorker methods */
 	@Override
 	protected String doInBackground() throws Exception {
-		String login = parent.getMyLoginPanel().getUsernameField().getText();
-		String password = new String(parent.getMyLoginPanel()
+		String login = parent.getLoginPanel().getUsernameField().getText();
+		String password = new String(parent.getLoginPanel()
 				.getPasswordField().getPassword());
 
 		mTwitterStream = new TwitterStreamFactory(this).getInstance(login,
