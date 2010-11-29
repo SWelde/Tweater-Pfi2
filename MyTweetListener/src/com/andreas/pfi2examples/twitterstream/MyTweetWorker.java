@@ -70,7 +70,6 @@ public class MyTweetWorker extends SwingWorker<String, String> implements
 		StringBuilder sb = new StringBuilder();
 		if ( arg0.getUser().getLang().equals("en")){
 		 sb.append(arg0.getUser().getName()+" "+arg0.getText()+"\n");
-		 //sb.append(arg0.getUser().getLang()+"\n");
 		}
 		this.publish(sb.toString());
 
