@@ -68,9 +68,10 @@ public class MyTweetWorker extends SwingWorker<String, String> implements
 	@Override
 	public void onStatus(Status arg0) {
 		StringBuilder sb = new StringBuilder();
-		sb.append(arg0.getUser().getName()).append(" ").append(arg0.getText())
-				.append("\n");
-
+		if ( arg0.getUser().getLang().equals("en")){
+		 sb.append(arg0.getUser().getName()+" "+arg0.getText()+"\n");
+		 //sb.append(arg0.getUser().getLang()+"\n");
+		}
 		this.publish(sb.toString());
 
 	}
