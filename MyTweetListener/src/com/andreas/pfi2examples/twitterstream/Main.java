@@ -48,7 +48,7 @@ public class Main extends JFrame {
 	 * Never do anything in this method.
 	 */
 	/**
-	 * Launch the application.
+	 * Launch the apbbplication.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
