@@ -28,8 +28,10 @@ public class MyTweetWorker extends SwingWorker<String, String> implements
 	Main parent;
 
 	/**
-	 * Constructor, we need to link to our mainclass to get a hold on the UI
-	 * elements.
+	 * Constructor, we need to link to our Main.java instance to get a hold on
+	 * the UI elements, the Main.java instance acts as a link to the parent
+	 * class - by accessing the parents public or protected methods we can link
+	 * to the exposed UI widgets.
 	 * 
 	 * @param parent
 	 */
@@ -38,12 +40,26 @@ public class MyTweetWorker extends SwingWorker<String, String> implements
 		this.parent = parent;
 	}
 
-	/* SwingWorker methods */
+	/**
+	 * SwingWorker methods, these methods belong to the description of the
+	 * SwingWorker type. The SwingWorker is a simplified threading class that
+	 * makes it easy to post changes to the Swing widgets in the User Interface.
+	 * 
+	 * doInBackground - the method in which we do all our background
+	 * logic/computation
+	 * 
+	 * process - the definition of what should happen on the User Interface, in
+	 * this method we're allowed to access any widget in the UI without causing
+	 * problems
+	 * 
+	 * done - if we need to close any streams or do some finishing works before
+	 * we close this Thread for all eternity, do them in this method
+	 */
 	@Override
 	protected String doInBackground() throws Exception {
 		String login = parent.getLoginPanel().getUsernameField().getText();
-		String password = new String(parent.getLoginPanel()
-				.getPasswordField().getPassword());
+		String password = new String(parent.getLoginPanel().getPasswordField()
+				.getPassword());
 
 		mTwitterStream = new TwitterStreamFactory(this).getInstance(login,
 				password);
@@ -64,12 +80,23 @@ public class MyTweetWorker extends SwingWorker<String, String> implements
 		super.done();
 	}
 
-	/* StatusListener methods */
+	/**
+	 * StatusListener methods.
+	 * 
+	 * These methods are inherited from the interface "StatusListener", by add
+	 * the words "implements StatusListener" to the class definition we agree to
+	 * adhere to the rules that define what a StatusListener object should look
+	 * like.
+	 * 
+	 * This is a "lowest common denominator" rule, and it only states that we
+	 * MUST include the methods mentioned below, although we are welcome to add
+	 * more of our own methods if we choose to do so.
+	 */
 	@Override
 	public void onStatus(Status arg0) {
 		StringBuilder sb = new StringBuilder();
-		if ( arg0.getUser().getLang().equals("en")){
-		 sb.append(arg0.getUser().getName()+" "+arg0.getText()+"\n");
+		if (arg0.getUser().getLang().equals("en")) {
+			sb.append(arg0.getUser().getName() + " " + arg0.getText() + "\n");
 		}
 		this.publish(sb.toString());
 

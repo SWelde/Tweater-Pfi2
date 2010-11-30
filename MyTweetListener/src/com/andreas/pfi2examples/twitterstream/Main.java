@@ -19,9 +19,6 @@ public class Main extends JFrame {
 	private LoginPanel loginPanel;
 
 	/**
-	 * Never do anything in this method...
-	 */
-	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
@@ -37,10 +34,6 @@ public class Main extends JFrame {
 		});
 	}
 
-	/**
-	 * This method should NOT be edited by hand, or try to never edit this. Some
-	 * times it's easier to just edit this method...
-	 */
 	/**
 	 * Create the frame.
 	 */
@@ -93,6 +86,10 @@ public class Main extends JFrame {
 	/**
 	 * Launching the SwingWorker class defined above, this method is used in
 	 * both the button and the password field.
+	 * 
+	 * This should obviously fetch the result of the login to Twitter before
+	 * starting the MyTweetWorker SwingWorker, so we don't try to read the
+	 * TwitterStream without an authenticated login.
 	 */
 	private void readTweets() {
 		MyTweetWorker tweeter = new MyTweetWorker(this);
