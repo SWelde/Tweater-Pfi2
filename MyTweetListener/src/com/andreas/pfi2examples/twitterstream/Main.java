@@ -19,7 +19,7 @@ public class Main extends JFrame {
 	private LoginPanel loginPanel;
 
 	/**
-	 * Never do anything in this method.
+	 * Never do anything in this method...
 	 */
 	/**
 	 * Launch the application.
