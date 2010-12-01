@@ -1,6 +1,5 @@
 package com.andreas.pfi2examples.studentlist;
 
-import javax.swing.ListModel;
 
 /**
  * Model for the student information. Only holds the name right now.

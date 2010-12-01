@@ -1,32 +1,28 @@
 package com.andreas.pfi2examples.studentlist;
 
-import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-
-import java.awt.GridBagLayout;
-import javax.swing.JList;
 import java.awt.GridBagConstraints;
-import javax.swing.JButton;
-import java.awt.Insets;
-import java.util.ArrayList;
+import java.awt.GridBagLayout;
 
-import javax.swing.AbstractListModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
-public class StudentListPanel extends JPanel implements ListSelectionListener {
+/**
+ * Composite JPanel which contains a scrollable JList
+ * 
+ * @author andreas
+ * 
+ */
+public class StudentListPanel extends JPanel {
 
-	/* Parent window, for linking to other components&panels */
+	/* Parent window, used in the JList listener */
 	private MainWindow parent;
 
-	/* JList components */
-	private ArrayList<Student> students = new ArrayList<Student>();
+	/* JList & it's data model */
 	private JList list;
-
 	private DefaultListModel model = new DefaultListModel();
 
 	/**
@@ -60,26 +56,26 @@ public class StudentListPanel extends JPanel implements ListSelectionListener {
 		list = new JList();
 		scrollPane.setViewportView(list);
 		list.setModel(model);
-		list.addListSelectionListener(this);
+		/* Let the parent contain the actual list of students */
+		list.addListSelectionListener(parent);
 	}
 
+	/**
+	 * Adds a student to the last position of the JList within this panel.
+	 * 
+	 * @param newStudent
+	 */
 	public void addStudent(Student newStudent) {
-		int pos = getList().getModel().getSize();
-		model.add(pos, newStudent);
-		students.add(newStudent);
+		int lastposition = getList().getModel().getSize();
+		model.add(lastposition, newStudent);
 	}
 
+	/**
+	 * Returns the JList component
+	 * 
+	 * @return
+	 */
 	public JList getList() {
 		return list;
-	}
-
-	@Override
-	public void valueChanged(ListSelectionEvent e) {
-		/*
-		 * When we make a new selection, we want to update the JLabels inside
-		 * the ShowStudentPanel in the parent window.
-		 */
-		parent.getShowStudentPanel().setSelection(students.get(((JList) e.getSource())
-				.getSelectedIndex()));
 	}
 }

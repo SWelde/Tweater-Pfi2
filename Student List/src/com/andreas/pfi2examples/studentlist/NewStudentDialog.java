@@ -9,18 +9,18 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.Toolkit;
 
 /**
+ * A JDialog in which we can enter information for a new student in our list.
  * 
  * @author andreas
  * 
  */
 public class NewStudentDialog extends JDialog {
 
-	private MainWindow parent;
-
 	private final JPanel contentPanel = new JPanel();
-	private AddStudentPanel addStudentPanel;
+	private NewStudentPanel addStudentPanel;
 
 	/**
 	 * Create the dialog.
@@ -29,7 +29,11 @@ public class NewStudentDialog extends JDialog {
 	 * constructor, this is so we can link to the parent frame.
 	 */
 	public NewStudentDialog(final MainWindow parent) {
-		this.parent = parent;
+		setIconImage(Toolkit
+				.getDefaultToolkit()
+				.getImage(
+						NewStudentDialog.class
+								.getResource("/com/andreas/pfi2examples/studentlist/images/logo_small.png")));
 
 		setModal(true);
 		setTitle("Add New Student");
@@ -40,7 +44,7 @@ public class NewStudentDialog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
-			addStudentPanel = new AddStudentPanel();
+			addStudentPanel = new NewStudentPanel();
 			contentPanel.add(addStudentPanel);
 		}
 		{
@@ -78,7 +82,7 @@ public class NewStudentDialog extends JDialog {
 		this.pack();
 	}
 
-	public AddStudentPanel getAddStudentPanel() {
+	public NewStudentPanel getAddStudentPanel() {
 		return addStudentPanel;
 	}
 }

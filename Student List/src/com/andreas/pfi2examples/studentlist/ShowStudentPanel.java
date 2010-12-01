@@ -10,6 +10,7 @@ import javax.swing.border.EtchedBorder;
 import java.awt.Font;
 
 /**
+ * Information panel, read-only composite JPanel.
  * 
  * @author andreas
  * 
