@@ -19,7 +19,9 @@ public class MyProcessing extends PApplet {
 		smooth();
 
 		/* Create the list of MyProcessingClass items */
-		items = new ArrayList<MyProcessingClass>();
+		items = new ArrayList<MyProcessingClass>(); 
+		//Generics only allowing object of MyProcessingClass in the list example here:
+		//http://tutorials.jenkov.com/java-generics/index.html
 	}
 
 	@Override
@@ -32,8 +34,12 @@ public class MyProcessing extends PApplet {
 		 * protect the access for the list and make it safe.
 		 */
 		// synchronized (items) {
-		for (MyProcessingClass item : items)
-			item.display();
+		for (int i=0;i< items.size();i++){
+			items.get(i).display();
+		}
+		// Alternative way of doing the for-loop a bit nicer
+		//for (MyProcessingClass item : items)
+		//	item.display();
 		// }
 
 		/* Paint the temporary object if we haven't released it yet */
@@ -53,7 +59,7 @@ public class MyProcessing extends PApplet {
 
 		/* Set the color, green for OK, red for NOT OK */
 		boolean ok = true;
-		for (MyProcessingClass item : items) {
+		for (MyProcessingClass item : items) { //Simplified for loop returns all objects in list
 			if (item.overlapping(temp)) {
 				ok = false;
 				break;
@@ -71,7 +77,7 @@ public class MyProcessing extends PApplet {
 		 * we're not overlapping we add the item to the list
 		 */
 		boolean okToAdd = true;
-		for (MyProcessingClass item : items) {
+		for (MyProcessingClass item : items) { //simplified for-loop
 			if (item.overlapping(temp)) {
 				okToAdd = false;
 				break;
