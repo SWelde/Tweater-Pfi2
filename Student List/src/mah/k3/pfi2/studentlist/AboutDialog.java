@@ -1,4 +1,4 @@
-package com.andreas.pfi2examples.studentlist;
+package mah.k3.pfi2.studentlist;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -32,11 +32,7 @@ public class AboutDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public AboutDialog() {
-		setIconImage(Toolkit
-				.getDefaultToolkit()
-				.getImage(
-						AboutDialog.class
-								.getResource("/com/andreas/pfi2examples/studentlist/images/logo_small.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(AboutDialog.class.getResource("/mah/k3/pfi2/studentlist/images/logo_small.png")));
 		setModal(true);
 		setResizable(false);
 		setBounds(100, 100, 450, 222);
@@ -44,9 +40,7 @@ public class AboutDialog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(
-				AboutDialog.class
-						.getResource("/com/andreas/pfi2examples/studentlist/images/logo.png")));
+		label.setIcon(new ImageIcon(AboutDialog.class.getResource("/mah/k3/pfi2/studentlist/images/logo.png")));
 		label.setSize(new Dimension(150, 150));
 		label.setPreferredSize(new Dimension(150, 150));
 		JLabel lblStudentListApplication = new JLabel(

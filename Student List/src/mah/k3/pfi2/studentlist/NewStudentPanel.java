@@ -1,4 +1,4 @@
-package com.andreas.pfi2examples.studentlist;
+package mah.k3.pfi2.studentlist;
 
 import java.awt.Color;
 import java.awt.GridBagConstraints;

@@ -1,4 +1,4 @@
-package com.andreas.pfi2examples.swingprocessing;
+package mah.k3.pfi2.swingprocessing;
 
 import processing.core.PApplet;
 

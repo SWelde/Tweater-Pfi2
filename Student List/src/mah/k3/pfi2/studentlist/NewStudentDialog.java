@@ -1,4 +1,4 @@
-package com.andreas.pfi2examples.studentlist;
+package mah.k3.pfi2.studentlist;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -29,11 +29,7 @@ public class NewStudentDialog extends JDialog {
 	 * constructor, this is so we can link to the parent frame.
 	 */
 	public NewStudentDialog(final MainWindow parent) {
-		setIconImage(Toolkit
-				.getDefaultToolkit()
-				.getImage(
-						NewStudentDialog.class
-								.getResource("/com/andreas/pfi2examples/studentlist/images/logo_small.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(NewStudentDialog.class.getResource("/mah/k3/pfi2/studentlist/images/logo_small.png")));
 
 		setModal(true);
 		setTitle("Add New Student");

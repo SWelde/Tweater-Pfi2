@@ -1,4 +1,4 @@
-package com.andreas.pfi2examples.twitterstream;
+package mah.k3.pfi2.twitterstream;
 
 import java.util.List;
 

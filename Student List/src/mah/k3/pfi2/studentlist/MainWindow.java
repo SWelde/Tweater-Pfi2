@@ -1,4 +1,4 @@
-package com.andreas.pfi2examples.studentlist;
+package mah.k3.pfi2.studentlist;
 
 import java.awt.EventQueue;
 import java.awt.Toolkit;
@@ -51,11 +51,7 @@ public class MainWindow extends JFrame implements ListSelectionListener {
 	 * Create the frame.
 	 */
 	public MainWindow() {
-		setIconImage(Toolkit
-				.getDefaultToolkit()
-				.getImage(
-						MainWindow.class
-								.getResource("/com/andreas/pfi2examples/studentlist/images/logo_small.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MainWindow.class.getResource("/mah/k3/pfi2/studentlist/images/logo_small.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 442);
 
