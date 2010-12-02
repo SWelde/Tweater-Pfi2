@@ -27,9 +27,14 @@ public class MyProcessing extends PApplet {
 		/* Repaint the background */
 		background(0);
 
-		/* Draw all the items in the list */
+		/*
+		 * Draw all the items in the list. Reveal the synchronized block will
+		 * protect the access for the list and make it safe.
+		 */
+		// synchronized (items) {
 		for (MyProcessingClass item : items)
 			item.display();
+		// }
 
 		/* Paint the temporary object if we haven't released it yet */
 		if (paintTemp)
@@ -85,7 +90,10 @@ public class MyProcessing extends PApplet {
 	 * Clear the list of items.
 	 */
 	public void clearList() {
+		/* Reveal the synchronized block to make the access safe. */
+		// synchronized (items) {
 		items.clear();
 		items.trimToSize();
+		// }
 	}
 }
