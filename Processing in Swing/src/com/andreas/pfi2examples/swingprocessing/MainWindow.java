@@ -67,7 +67,7 @@ public class MainWindow extends JFrame {
 				 * Notice how this can cause exceptions. This occurs when we're
 				 * trying to modify the list while we're reading it. This is a
 				 * common problem when using collections that aren't already
-				 * syncronized.
+				 * Synchronized.
 				 */
 				getSketch().clearList();
 			}
