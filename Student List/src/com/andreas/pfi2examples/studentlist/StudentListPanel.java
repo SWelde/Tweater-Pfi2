@@ -56,7 +56,8 @@ public class StudentListPanel extends JPanel {
 		list = new JList();
 		scrollPane.setViewportView(list);
 		list.setModel(model);
-		/* Let the parent contain the actual list of students */
+		
+		/* Let the parent (MainWindow) react to changes in the JList */
 		list.addListSelectionListener(parent);
 	}
 
