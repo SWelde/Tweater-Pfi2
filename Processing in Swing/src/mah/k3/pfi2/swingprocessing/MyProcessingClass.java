@@ -3,7 +3,7 @@ package mah.k3.pfi2.swingprocessing;
 import processing.core.PApplet;
 
 /**
- * Processing class, this one is just a simple red Circle.
+ * Processing class, this one is just a simple blue Circle.
  * 
  * @author andreas
  * 
@@ -67,7 +67,9 @@ public class MyProcessingClass {
 		this.ok = ok;
 	}
 
-	/* A BUNCH OF SETTERS AND GETTERS */
+	/* A BUNCH OF SETTERS AND GETTERS used instead of accessing the variables directly as we perhaps would do in pure processing
+	 * here the variables are private and cant be accessed form outside this object.
+	 * */
 	public float getX() {
 		return x;
 	}

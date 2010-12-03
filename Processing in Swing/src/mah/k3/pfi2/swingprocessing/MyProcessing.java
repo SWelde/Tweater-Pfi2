@@ -43,8 +43,9 @@ public class MyProcessing extends PApplet {
 		// }
 
 		/* Paint the temporary object if we haven't released it yet */
-		if (paintTemp)
+		if (paintTemp){
 			temp.display2();
+		}
 	}
 
 	public void mousePressed() {
