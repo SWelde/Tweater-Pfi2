@@ -7,6 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TryMe extends JDialog {
 
@@ -34,6 +39,23 @@ public class TryMe extends JDialog {
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		{
+			JMenu menu = new JMenu("New menu");
+			contentPanel.add(menu);
+			{
+				JMenuItem menuItem = new JMenuItem("New menu item");
+				menuItem.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						
+					}
+				});
+				menu.add(menuItem);
+			}
+		}
+		{
+			JMenuBar menuBar = new JMenuBar();
+			contentPanel.add(menuBar);
+		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
