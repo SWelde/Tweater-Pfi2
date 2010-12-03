@@ -74,7 +74,7 @@ public class StudentListPanel extends JPanel {
 	/**
 	 * Returns the JList component
 	 * 
-	 * @return
+	 * @return JList
 	 */
 	public JList getList() {
 		return list;

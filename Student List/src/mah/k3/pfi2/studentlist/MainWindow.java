@@ -142,7 +142,7 @@ public class MainWindow extends JFrame implements ListSelectionListener {
 	/**
 	 * Returns the panel that contains a list of all the current students
 	 * 
-	 * @return
+	 * @return the StudentListPanel
 	 */
 	public StudentListPanel getStudentListPanel() {
 		return studentListPanel;
@@ -151,7 +151,7 @@ public class MainWindow extends JFrame implements ListSelectionListener {
 	/**
 	 * Returns the information panel that shows the name of the selected student
 	 * 
-	 * @return
+	 * @return ShowStudentPanel
 	 */
 	public ShowStudentPanel getShowStudentPanel() {
 		return showStudentPanel;
