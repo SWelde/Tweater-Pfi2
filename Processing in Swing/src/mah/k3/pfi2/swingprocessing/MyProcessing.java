@@ -26,7 +26,7 @@ public class MyProcessing extends PApplet {
 
 	@Override
 	public void draw() {
-		/* Repaint the background */
+		/* Repaint the background  */
 		background(0);
 
 		/*
