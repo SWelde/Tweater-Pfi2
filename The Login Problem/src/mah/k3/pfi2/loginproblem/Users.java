@@ -22,7 +22,7 @@ public class Users {
 	 * 
 	 * @param username
 	 * @param password
-	 * @return
+	 * @return boolean reflecting the result of login
 	 */
 	public boolean login(String username, String password) {
 		int id = -1;
