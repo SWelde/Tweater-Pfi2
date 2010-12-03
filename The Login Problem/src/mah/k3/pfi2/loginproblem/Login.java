@@ -3,7 +3,7 @@ package mah.k3.pfi2.loginproblem;
 /**
  * Login description.
  * 
- * @author andreass
+ * @author andreas
  * 
  */
 public class Login {
