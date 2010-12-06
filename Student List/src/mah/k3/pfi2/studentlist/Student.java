@@ -1,17 +1,28 @@
 package mah.k3.pfi2.studentlist;
 
-
 /**
- * Model for the student information. Only holds the name right now.
+ * Model for student object.
  * 
  * @author andreas
  * 
  */
 public class Student {
+	/* Unique values, a student may only have one entrance in each */
 	private int id;
 	private String firstName;
 	private String lastName;
+	private String adress;
+	private int phonenumber;
+	/* Non-unique values, a student can have several values in each */
+	private String[] courseids;
 
+	/**
+	 * Constructor, the id must be unique for this single student.
+	 * 
+	 * @param id
+	 * @param firstName
+	 * @param lastName
+	 */
 	public Student(int id, String firstName, String lastName) {
 		super();
 		this.id = id;
@@ -57,16 +68,15 @@ public class Student {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	/**
+	 * @return a string representation of the student.
 	 */
 	@Override
 	public String toString() {
