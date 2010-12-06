@@ -18,7 +18,7 @@ public class MainWindow extends JFrame {
 	private MyProcessing sketch;
 
 	/**
-	 * Launch the application.
+	 * Launch the application...
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
