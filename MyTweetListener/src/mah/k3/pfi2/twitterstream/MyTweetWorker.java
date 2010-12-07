@@ -3,6 +3,10 @@ package mah.k3.pfi2.twitterstream;
 import java.util.List;
 
 import javax.swing.SwingWorker;
+import javax.swing.event.EventListenerList;
+
+import mah.k3.pfi2.twitterstream.event.NewStatusUpdateEvent;
+import mah.k3.pfi2.twitterstream.event.NewStatusUpdateEventListener;
 
 import twitter4j.Status;
 import twitter4j.StatusDeletionNotice;
@@ -24,20 +28,33 @@ import twitter4j.TwitterStreamFactory;
 public class MyTweetWorker extends SwingWorker<String, String> implements
 		StatusListener {
 
-	TwitterStream mTwitterStream;
-	Main parent;
+	/*
+	 * The TwitterStream object, this actually launches a thread of it's own
+	 * which takes care of polling new information from the Twitter servers.
+	 */
+	private TwitterStream mTwitterStream;
+
+	/* Login information */
+	private String username;
+	private char[] password;
+
+	/*
+	 * List of objects listening to this specific instance, this is a very
+	 * special kind of list (not like ArrayList etc).
+	 */
+	EventListenerList listenerList = new EventListenerList();
 
 	/**
-	 * Constructor, we need to link to our Main.java instance to get a hold on
-	 * the UI elements, the Main.java instance acts as a link to the parent
-	 * class - by accessing the parents public or protected methods we can link
-	 * to the exposed UI widgets.
+	 * MyTweetWorker requires a string user name and a char array password, it
+	 * will then try to login to the Twitter Servers and read the stream.
 	 * 
-	 * @param parent
+	 * @param username
+	 * @param password
 	 */
-	public MyTweetWorker(Main parent) {
+	public MyTweetWorker(String username, char[] password) {
 		super();
-		this.parent = parent;
+		this.username = username;
+		this.password = password;
 	}
 
 	/**
@@ -57,12 +74,8 @@ public class MyTweetWorker extends SwingWorker<String, String> implements
 	 */
 	@Override
 	protected String doInBackground() throws Exception {
-		String login = parent.getLoginPanel().getUsernameField().getText();
-		String password = new String(parent.getLoginPanel().getPasswordField()
-				.getPassword());
-
-		mTwitterStream = new TwitterStreamFactory(this).getInstance(login,
-				password);
+		mTwitterStream = new TwitterStreamFactory(this).getInstance(username,
+				new String(password));
 		mTwitterStream.sample();
 
 		return null;
@@ -70,8 +83,8 @@ public class MyTweetWorker extends SwingWorker<String, String> implements
 
 	@Override
 	protected void process(List<String> chunks) {
-		for (String s : chunks)
-			parent.getStreamPanel().getTextArea().append(s);
+		/* Fire a new event to all listeners */
+		newStatusUpdateEvent(new NewStatusUpdateEvent(this, chunks));
 	}
 
 	@Override
@@ -80,7 +93,7 @@ public class MyTweetWorker extends SwingWorker<String, String> implements
 		super.done();
 	}
 
-	/**
+	/*
 	 * StatusListener methods.
 	 * 
 	 * These methods are inherited from the interface "StatusListener", by add
@@ -105,19 +118,53 @@ public class MyTweetWorker extends SwingWorker<String, String> implements
 	@Override
 	public void onDeletionNotice(StatusDeletionNotice arg0) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void onException(Exception arg0) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void onTrackLimitationNotice(int arg0) {
 		// TODO Auto-generated method stub
-
 	}
 
+	/*
+	 * NewStatusUpdateEvent methods.
+	 * 
+	 * These methods are used to add and remove listeners for this specific
+	 * instance of the MyTweetWorker. Each instance has their own list of
+	 * listeners who receive any events that this instance launches.
+	 */
+	/**
+	 * Used to add a new receiver of events from this instance.
+	 */
+	public void addListener(NewStatusUpdateEventListener listener) {
+		listenerList.add(NewStatusUpdateEventListener.class, listener);
+	}
+
+	/**
+	 * Used to remove a receiver of events from this instance.
+	 */
+	public void removeListener(NewStatusUpdateEventListener listener) {
+		listenerList.remove(NewStatusUpdateEventListener.class, listener);
+	}
+
+	/**
+	 * Used by MyTweetWorker to send new statusUpdateEvents to all current
+	 * listeners.
+	 */
+	void newStatusUpdateEvent(NewStatusUpdateEvent evt) {
+		Object[] listeners = listenerList.getListenerList();
+		// Each listener occupies two elements - the first is the listener class
+		// and the second is the listener instance
+		for (int i = 0; i < listeners.length; i += 2) {
+			if (listeners[i] == NewStatusUpdateEventListener.class) {
+				((NewStatusUpdateEventListener) listeners[i + 1])
+						.NewStatusUpdate(evt);
+			}
+		}
+
+	}
 }
