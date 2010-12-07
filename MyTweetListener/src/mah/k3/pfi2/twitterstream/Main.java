@@ -9,15 +9,18 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-import mah.k3.pfi2.twitterstream.event.NewStatusUpdateEvent;
-import mah.k3.pfi2.twitterstream.event.NewStatusUpdateEventListener;
+import twitter4j.Status;
+import twitter4j.StatusDeletionNotice;
+import twitter4j.StatusListener;
+import twitter4j.TwitterStream;
+import twitter4j.TwitterStreamFactory;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.List;
 
 @SuppressWarnings("serial")
-public class Main extends JFrame implements NewStatusUpdateEventListener {
+public class Main extends JFrame implements StatusListener {
 
 	private JPanel contentPane;
 	private StreamPanel streamPanel;
@@ -110,19 +113,16 @@ public class Main extends JFrame implements NewStatusUpdateEventListener {
 	 * TwitterStream without an authenticated login.
 	 */
 	private void readTweets() {
-		/* Create the MyTweetWorker thread */
-		MyTweetWorker tweeter = new MyTweetWorker(getLoginPanel()
-				.getUsernameField().getText(), getLoginPanel()
-				.getPasswordField().getPassword());
-		/*
-		 * Add a listener for this specific worker, in this case we'll say that
-		 * the Main.java will listen to the events
-		 */
-		tweeter.addListener(this);
+		/* Create the TweetStream thread */
+		TwitterStream mTwitterStream = new TwitterStreamFactory(this)
+				.getInstance(getLoginPanel().getUsernameField().getText(),
+						new String(getLoginPanel().getPasswordField()
+								.getPassword()));
 
-		/* Start the worker */
-		tweeter.execute();
+		/* Start reading the Twitter Stream */
+		mTwitterStream.sample();
 
+		/* Disable the login UI */
 		loginPanel.getButton().setEnabled(false);
 		loginPanel.getUsernameField().setEnabled(false);
 		loginPanel.getPasswordField().setEnabled(false);
@@ -148,10 +148,33 @@ public class Main extends JFrame implements NewStatusUpdateEventListener {
 		return loginPanel;
 	}
 
+	/* Status Listener methods */
 	@Override
-	public void NewStatusUpdate(NewStatusUpdateEvent evt) {
-		List<String> updates = evt.getMessages();
-		for (String update : updates)
-			getStreamPanel().getTextArea().append(update);
+	public void onDeletionNotice(StatusDeletionNotice arg0) {
+		// TODO Auto-generated method stub
+
 	}
+
+	@Override
+	public void onException(Exception arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onStatus(Status arg0) {
+		/* Read the message and append it to the JTextArea */
+		StringBuilder sb = new StringBuilder();
+		if (arg0.getUser().getLang().equals("en")) {
+			sb.append(arg0.getUser().getName() + " " + arg0.getText() + "\n");
+		}
+		getStreamPanel().getTextArea().append(sb.toString());
+	}
+
+	@Override
+	public void onTrackLimitationNotice(int arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
 }
