@@ -19,6 +19,7 @@ public class StreamPanel extends JPanel {
 	private JTextArea textArea;
 
 	private String test4 = "hitta denna du...";
+	// Test
 	
 	/**
 	 * Create the panel.
