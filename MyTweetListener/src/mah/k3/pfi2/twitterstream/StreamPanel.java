@@ -18,7 +18,9 @@ import javax.swing.JTextArea;
 public class StreamPanel extends JPanel {
 	private JTextArea textArea;
 
-	private String test3 = "hitta denna duwww...";
+	private String test4 = "hitta denna du...";
+	// Test
+
 	
 	/**
 	 * Create the panel.
