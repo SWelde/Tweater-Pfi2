@@ -23,12 +23,8 @@ import java.util.List;
 public class Main extends JFrame implements StatusListener {
 
 	private JPanel contentPane;
-	private String klar;
 	private StreamPanel streamPanel;
 	private LoginPanel loginPanel;
-
-	private int test;
-	
 	/**
 	 * Launch the application.
 	 */
