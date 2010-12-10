@@ -164,9 +164,9 @@ public class Main extends JFrame implements StatusListener {
 	public void onStatus(Status arg0) {
 		/* Read the message and append it to the JTextArea */
 		StringBuilder sb = new StringBuilder();
-		if (arg0.getUser().getLang().equals("en")) {
+		//if (arg0.getUser().getLang().equals("en")) {
 			sb.append(arg0.getUser().getName() + " " + arg0.getText() + "\n");
-		}
+		//}
 		getStreamPanel().getTextArea().append(sb.toString());
 	}
 
