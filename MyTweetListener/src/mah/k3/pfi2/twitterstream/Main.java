@@ -20,6 +20,7 @@ import java.util.List;
 public class Main extends JFrame implements NewStatusUpdateEventListener {
 
 	private JPanel contentPane;
+	private String klar;
 	private StreamPanel streamPanel;
 	private LoginPanel loginPanel;
 
