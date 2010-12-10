@@ -27,6 +27,8 @@ public class Main extends JFrame implements StatusListener {
 	private StreamPanel streamPanel;
 	private LoginPanel loginPanel;
 
+	private int test;
+	
 	/**
 	 * Launch the application.
 	 */
