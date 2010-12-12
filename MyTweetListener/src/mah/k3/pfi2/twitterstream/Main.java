@@ -154,6 +154,7 @@ public class Main extends JFrame implements StatusListener {
 
 	}
 
+
 	@Override
 	public void onException(Exception arg0) {
 		// TODO Auto-generated method stub
@@ -175,5 +176,4 @@ public class Main extends JFrame implements StatusListener {
 		// TODO Auto-generated method stub
 
 	}
-
 }
