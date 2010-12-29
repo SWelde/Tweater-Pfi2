@@ -15,6 +15,7 @@ public class Users {
 	public Users() {
 		/* Create the admin user */
 		users.add(new Login(users.size(), "admin", "admin"));
+		users.add(new Login(users.size(), "yesyes", "nono"));
 	}
 
 	/**
